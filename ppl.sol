@@ -241,11 +241,11 @@ contract  PepeLePew  is IERC20, Ownable {
         uint256 deltaBalance = address(this).balance.sub(initialBalance);
         uint256 unitBalance= deltaBalance.div(_denominator.sub(liquidityFee));
         uint256 ETHToAddLiquidityWith = unitBalance.mul(liquidityFee);
-        if(ETHToAddLiquidityWith > uint256(0)){addLiquidity(tokensToAddLiquidityWith, ETHToAddLiquidityWith); }
+        if(ETHToAddLiquidityWith > uint256(0)){addLiquidity(tokensToAddLiquidityWith, ETHToAddLiquidityWith); }  //12 phần add thêm vào liquidity
         uint256 marketingAmt = unitBalance.mul(2).mul(marketingFee);
-        if(marketingAmt > 0){payable(marketing_receiver).transfer(marketingAmt);}
+        if(marketingAmt > 0){payable(marketing_receiver).transfer(marketingAmt);}  // 1 phần tới mkt
         uint256 remainingBalance = address(this).balance;
-        if(remainingBalance > uint256(0)){payable(development_receiver).transfer(remainingBalance);}
+        if(remainingBalance > uint256(0)){payable(development_receiver).transfer(remainingBalance);} // phần còn lại tới devvelopment
     }
 
     function addLiquidity(uint256 tokenAmount, uint256 ETHAmount) private { //add 1 phần vào thanh khoản
